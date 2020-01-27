@@ -1,0 +1,57 @@
+\documentclass{beamer}
+
+\setbeamersize{text margin left=0pt,text margin right=0pt} 
+
+\usepackage{eulervm}
+\usepackage[T1]{fontenc}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{dateplot, external}
+%\tikzexternalize
+%\tikzset{external/prefix=fig/}
+\pgfplotsset{
+	scaled ticks=false,
+	%grid=major,
+ 	max space between ticks=15,
+ 	enlargelimits=0.05,
+ 	%tick label style={font=\scriptsize},
+ 	%label style={font=\scriptsize},
+ 	%%% LEGEND %%%
+ 	legend image post style={scale=0.30}, % for the marks
+ 	legend style={
+ 		draw=none,
+ 		%font=\tiny,
+ 	    nodes={scale=0.75, transform shape},
+ 	    nodes={inner sep=1.00pt, outer sep=1.00pt,},
+		opacity=0.8,
+		text opacity=1.0,
+ 	    row sep=0.0pt,
+ 	    inner sep=0.0pt,
+ 	    outer sep=0.0pt,
+ 	},
+	%%% Y TICK LABEL %%%
+    y tick label style={
+	/pgf/number format/.cd,
+	fixed,
+	fixed zerofill,
+	%sci,
+	%sci zerofill,
+	overlay,
+	precision=0,
+	set thousands separator={},
+	use comma,
+	},
+}
+
+
+\begin{document}
+%
+\begin{frame}
+\centering\input{tikz/bar_graph01.tikz}
+\end{frame}
+%
+\begin{frame}
+\centering\input{tikz/bar_graph02.tikz}
+\end{frame}
+\end{document}
