@@ -2,8 +2,7 @@ import copy
 import pandas
 from pathlib import Path
 
-
-class FieldDf:
+class NpvDf:
     csvName = ''
     csvRoot = Path('')
     csvSep  = ','
@@ -12,15 +11,16 @@ class FieldDf:
     dfColsSelect = []
     dfColsRename = {}
 
-    def __init__(self, name, group_folder, sim_folder):
+    def __init__(self, name, group_folder):
         self.name = name
         self.groupFolder = group_folder
-        self.simFolder = sim_folder
         self.df = pandas.read_csv(self.csvRoot / self.simsFolder /
-                                  self.groupFolder / self.simFolder / self.csvName,
-                                  sep=self.csvSep)
+                                  self.groupFolder / self.csvName, sep=self.csvSep)
 
-        if self.dfIndex: self.df = self.df.set_index(self.dfIndex)
+        if self.dfIndex:
+            self.df = self.df.set_index(self.dfIndex)
+        else:
+            self.df = self.df.set_index('Index')
         if self.dfColsSelect: self.df = self.df[self.dfColsSelect]
         if self.dfColsRename: self.df = self.df.rename(columns=self.dfColsRename)
 
@@ -32,3 +32,4 @@ class FieldDf:
         copy_self.df = df
         copy_self.simDivisor = other_obj.groupFolder + '/' + other_obj.simFolder
         return copy_self
+

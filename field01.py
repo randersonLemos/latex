@@ -1,7 +1,7 @@
 from os import sys, path; sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
-from config.scripts import settings as sett
+from config import settings as sett
 from dictionary.scripts.sector_keys import Sector_Keys
-from latex2.scripts.fielddf import FieldDf
+from latex.scripts.fielddf import FieldDf
 
 
 FieldDf.csvName = 'Field.csv'
