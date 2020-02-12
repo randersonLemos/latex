@@ -10,6 +10,7 @@ class NpvDf:
     dfIndex = ''
     dfColsSelect = []
     dfColsRename = {}
+    dfColsScale  = {}
 
     def __init__(self, name, group_folder):
         self.name = name
@@ -23,6 +24,8 @@ class NpvDf:
             self.df = self.df.set_index('Index')
         if self.dfColsSelect: self.df = self.df[self.dfColsSelect]
         if self.dfColsRename: self.df = self.df.rename(columns=self.dfColsRename)
+        for col in self.dfColsScale:
+            self.df[col] = self.df[col]*self.dfColsScale[col]
 
         self.simDivisor= ''
 
